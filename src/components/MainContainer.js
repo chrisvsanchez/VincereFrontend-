@@ -1,7 +1,8 @@
 import React from "react";
-import NavBar from "./NavBar";
+import Search from "./Search";
 import Home from "./Home";
 import About from "./About";
+import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Settings from "./Settings";
 import ProductsPage from "./Products/ProductPage";
@@ -11,6 +12,7 @@ import { Switch, Route } from "react-router-dom";
 class MainContainer extends React.Component {
   state = {
     products: [],
+    search: "",
   };
 
   componentDidMount() {
@@ -23,6 +25,17 @@ class MainContainer extends React.Component {
         });
       });
   }
+  handleInput = (e) => {
+    const userSearchInput = e.target.value;
+    this.setState({ search: userSearchInput });
+    // this.filterSearch(this.state.search);
+  };
+  filterSearch = (searchWord) => {
+    searchWord = this.state.search;
+    return this.state.products.filter((item) =>
+      item.name.toUpperCase().includes(searchWord.toUpperCase())
+    );
+  };
   render() {
     return (
       <>
@@ -32,7 +45,10 @@ class MainContainer extends React.Component {
             <Home />
           </Route>
           <Route path="/shop">
-            <ProductsPage products={this.state.products} />
+            <ProductsPage
+              products={this.filterSearch()}
+              handleSearch={this.handleInput}
+            />
           </Route>
           <Route path="/about">
             <About />

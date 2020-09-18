@@ -12,7 +12,10 @@ class ProductPage extends React.Component {
     return (
       <>
         <h1>Product Page</h1>
-        <ItemContainer turnToCard={this.turnToCard()} />
+        <ItemContainer
+          handleSearch={this.props.handleSearch}
+          turnToCard={this.turnToCard()}
+        />
       </>
     );
   }

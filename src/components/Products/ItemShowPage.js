@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Segment,
-  Image,
-  Icon,
-  Button,
-  GridColumn,
-  Dropdown,
-} from "semantic-ui-react";
+import { Grid, Segment, Image, Button } from "semantic-ui-react";
 class ItemShowPage extends React.Component {
   state = {
     currentItem: [],
