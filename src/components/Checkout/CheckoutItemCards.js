@@ -4,18 +4,35 @@ class CheckoutItemCards extends React.Component {
   state = {
     quantity: 1,
   };
-  increase = (prevState) => {
-    if (
-      this.state.quantity >= 1 &&
-      this.state.quantity <= this.props.item.quantity
-    )
-      this.setState((prevState) => {
+  increase = () => {
+    this.setState((prevState) => {
+      if (
+        prevState.quantity >= 1 &&
+        // Since the current cart refreshing once rendered it cannot grab the item's quantity
+        // or does the item not have an item quanitity in the backend ?
+        prevState.quantity < this.props.item.quantity
+      ) {
         return { quantity: prevState.quantity + 1 };
-      });
+      } else {
+        return null;
+      }
+    });
+  };
+  decrease = () => {
+    this.setState((prevState) => {
+      if (prevState.quantity === 1) {
+        // Since the current cart refreshing once rendered it cannot grab the item's quantity
+        // or does the item not have an item quanitity in the backend ?
+        return null;
+      } else {
+        return { quantity: prevState.quantity - 1 };
+      }
+    });
   };
 
   render() {
     const { image1, price, name, quantity } = this.props.item;
+
     return (
       <>
         <Grid celled>
@@ -30,9 +47,11 @@ class CheckoutItemCards extends React.Component {
             </Grid.Column>
             <Grid.Column width={4}>
               <Header as="h3" textAlign="center">
-                <Button floated="left">➖</Button>
+                <Button floated="left" onClick={this.decrease}>
+                  ➖
+                </Button>
                 Quantity: {this.state.quantity}
-                <Button floated="right" onClick={() => this.increase()}>
+                <Button floated="right" onClick={this.increase}>
                   ➕
                 </Button>
               </Header>
