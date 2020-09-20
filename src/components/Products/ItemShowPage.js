@@ -23,7 +23,11 @@ class ItemShowPage extends React.Component {
         <Segment center style={{ backgroundColor: "black" }}>
           <div>
             <h1 style={{ color: "white" }}>{name}</h1>
-            <Button floated="right" inverted>
+            <Button
+              floated="right"
+              inverted
+              onClick={() => this.props.addToCard(this.state.currentItem)}
+            >
               ADD TO CART
             </Button>
           </div>

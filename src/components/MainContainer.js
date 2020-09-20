@@ -1,5 +1,4 @@
 import React from "react";
-import Search from "./Search";
 import Home from "./Home";
 import About from "./About";
 import NavBar from "./NavBar";
@@ -13,6 +12,7 @@ class MainContainer extends React.Component {
   state = {
     products: [],
     search: "",
+    cart: [],
   };
 
   componentDidMount() {
@@ -36,6 +36,12 @@ class MainContainer extends React.Component {
       item.name.toUpperCase().includes(searchWord.toUpperCase())
     );
   };
+  addToCard = (currentItemObj) => {
+    let addingObj = [currentItemObj, ...this.state.cart];
+    this.setState({
+      cart: addingObj,
+    });
+  };
   render() {
     return (
       <>
@@ -48,6 +54,8 @@ class MainContainer extends React.Component {
             <ProductsPage
               products={this.filterSearch()}
               handleSearch={this.handleInput}
+              addToCard={this.addToCard}
+              searchState={this.state.search}
             />
           </Route>
           <Route path="/about">
@@ -57,9 +65,14 @@ class MainContainer extends React.Component {
             <Settings />
           </Route>
           <Route path="/cart">
-            <CheckoutContainer />
+            <CheckoutContainer cart={this.state.cart} />
           </Route>
-          <Route path="/itemshowpage/:id" component={ItemShowPage} />
+          <Route
+            path="/itemshowpage/:id"
+            render={(props) => (
+              <ItemShowPage {...props} addToCard={this.addToCard} />
+            )}
+          />
         </Switch>
         <Footer />
       </>

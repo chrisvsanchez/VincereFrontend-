@@ -7,7 +7,10 @@ class ItemContainer extends React.Component {
       <>
         <h1>ItemContainer </h1>
         <Segment>
-          <Search handleSearch={this.props.handleSearch} />
+          <Search
+            handleSearch={this.props.handleSearch}
+            searchState={this.props.searchState}
+          />
         </Segment>
         <Card.Group centered itemsPerRow={4}>
           {this.props.turnToCard}
