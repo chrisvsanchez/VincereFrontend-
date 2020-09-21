@@ -4,7 +4,11 @@ import { Header, Button } from "semantic-ui-react";
 class CheckoutContainer extends React.Component {
   turnToItemSection = () => {
     return this.props.cart.map((item) => (
-      <CheckoutItemCard key={item.id} item={item} />
+      <CheckoutItemCard
+        key={item.id}
+        removeItem={this.props.removeItem}
+        item={item}
+      />
     ));
   };
   render() {

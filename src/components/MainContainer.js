@@ -42,6 +42,12 @@ class MainContainer extends React.Component {
       cart: addingObj,
     });
   };
+  removeItemFromCart = (itemObj) => {
+    let updatedCart = this.state.cart.filter((item) => item != itemObj);
+    this.setState({
+      cart: updatedCart,
+    });
+  };
   render() {
     return (
       <>
@@ -65,7 +71,11 @@ class MainContainer extends React.Component {
             <Settings />
           </Route>
           <Route path="/cart">
-            <CheckoutContainer cart={this.state.cart} />
+            <CheckoutContainer
+              cart={this.state.cart}
+              //   cart={this.state.cart}
+              removeItem={this.removeItemFromCart}
+            />
           </Route>
           <Route
             path="/itemshowpage/:id"

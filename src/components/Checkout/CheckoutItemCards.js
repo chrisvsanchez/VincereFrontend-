@@ -29,7 +29,9 @@ class CheckoutItemCards extends React.Component {
       }
     });
   };
-
+  //   handleRemoveItem = () => {
+  //     this.props.removeItem(this.props.item);
+  //   };
   render() {
     const { image1, price, name, quantity } = this.props.item;
 
@@ -62,7 +64,11 @@ class CheckoutItemCards extends React.Component {
               </Header>
             </Grid.Column>
             <Grid.Column width={3}>
-              <Header as="h3" textAlign="center">
+              <Header
+                as="h3"
+                onClick={() => this.props.removeItem(this.props.item)}
+                textAlign="center"
+              >
                 Remove Item
               </Header>
             </Grid.Column>
