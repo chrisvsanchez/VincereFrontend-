@@ -14,6 +14,7 @@ class ItemShowPage extends React.Component {
         });
       });
   }
+
   render() {
     console.log(this.state.currentItem);
     const { image1, name, id, description, price } = this.state.currentItem;

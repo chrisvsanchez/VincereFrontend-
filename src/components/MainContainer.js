@@ -8,11 +8,13 @@ import ProductsPage from "./Products/ProductPage";
 import ItemShowPage from "./Products/ItemShowPage";
 import CheckoutContainer from "./Checkout/CheckoutContainer";
 import { Switch, Route } from "react-router-dom";
+import { TransitionablePortal } from "semantic-ui-react";
 class MainContainer extends React.Component {
   state = {
     products: [],
     search: "",
     cart: [],
+    cartTotal: 0,
   };
 
   componentDidMount() {
@@ -30,23 +32,41 @@ class MainContainer extends React.Component {
     this.setState({ search: userSearchInput });
     // this.filterSearch(this.state.search);
   };
+
   filterSearch = (searchWord) => {
     searchWord = this.state.search;
     return this.state.products.filter((item) =>
       item.name.toUpperCase().includes(searchWord.toUpperCase())
     );
   };
+  componentDidUpdate(prevProps, prevState) {
+    // cartTotal = () => {
+    if (prevState.cart !== this.state.cart) {
+      let total = this.state.cart.reduce(
+        (sum, product) => sum + product.price,
+        0
+      );
+
+      this.setState({
+        cartTotal: total,
+      });
+      console.log("prevState", prevState);
+      console.log("State", this.state);
+    }
+    // };
+  }
   addToCard = (currentItemObj) => {
     let addingObj = [currentItemObj, ...this.state.cart];
-    this.setState({
-      cart: addingObj,
-    });
+    this.setState((prevState) => ({ ...prevState, cart: addingObj }));
+    // this.cartTotal();
   };
+
   removeItemFromCart = (itemObj) => {
-    let updatedCart = this.state.cart.filter((item) => item != itemObj);
+    let updatedCart = this.state.cart.filter((item) => item !== itemObj);
     this.setState({
       cart: updatedCart,
     });
+    // this.cartTotal();
   };
   render() {
     return (
@@ -62,6 +82,7 @@ class MainContainer extends React.Component {
               handleSearch={this.handleInput}
               addToCard={this.addToCard}
               searchState={this.state.search}
+              //   cartTotal={this.cartTotal}
             />
           </Route>
           <Route path="/about">
@@ -75,6 +96,7 @@ class MainContainer extends React.Component {
               cart={this.state.cart}
               //   cart={this.state.cart}
               removeItem={this.removeItemFromCart}
+              cartTotal={this.state.cartTotal}
             />
           </Route>
           <Route

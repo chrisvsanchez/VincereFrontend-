@@ -24,7 +24,7 @@ class CheckoutContainer extends React.Component {
           textAlign="center"
         >
           <br></br>
-          Total:
+          Total:${this.props.cartTotal}.00
           <br></br>
           <Button inverted size="large">
             CHECK OUT

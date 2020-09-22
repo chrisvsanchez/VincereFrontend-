@@ -5,7 +5,12 @@ import ItemCard from "./ItemCard";
 class ProductPage extends React.Component {
   turnToCard = (props) => {
     return this.props.products.map((item) => (
-      <ItemCard key={item.id} item={item} addToCard={this.addToCard} />
+      <ItemCard
+        key={item.id}
+        item={item}
+        addToCard={this.addToCard}
+        // cartTotal={this.props.cartTotal}
+      />
     ));
   };
   render() {
@@ -16,6 +21,7 @@ class ProductPage extends React.Component {
           handleSearch={this.props.handleSearch}
           turnToCard={this.turnToCard()}
           searchState={this.props.searchState}
+          //   cartTotal={this.props.cartTotal}
         />
       </>
     );
