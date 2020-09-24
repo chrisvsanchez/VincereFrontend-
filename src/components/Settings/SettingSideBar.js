@@ -28,7 +28,12 @@ class SettingSideBar extends React.Component {
           <Menu.Item
             name="Order History"
             active={activeItem === "Order History"}
-            // onClick={this.props.handleOrderHistory()}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name="Registered Events"
+            active={activeItem === "Registered Events"}
+            onClick={this.handleItemClick}
           />
           <Dropdown item text="Update Info">
             <Dropdown.Menu>

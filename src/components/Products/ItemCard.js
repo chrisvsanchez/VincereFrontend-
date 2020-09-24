@@ -11,6 +11,7 @@ class itemCard extends React.Component {
     return (
       <Link to={`/itemshowpage/${id}`}>
         <Card>
+          <br></br>
           <Image
             src={image1}
             //   Toggle image based on synthetic event
@@ -19,10 +20,11 @@ class itemCard extends React.Component {
             size="medium"
           />
           <div>
-            <Header as="h3" textAlign="center">
+            <Header as="h4" textAlign="center">
               {name}
               <br></br>${price}.00
             </Header>
+            <br></br>
           </div>
         </Card>
       </Link>

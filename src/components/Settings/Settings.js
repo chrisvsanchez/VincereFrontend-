@@ -1,6 +1,6 @@
 import React from "react";
 import SettingSideBar from "./SettingSideBar";
-import { Form, Segment, Button, Grid } from "semantic-ui-react";
+import { Form, Segment, Button, Grid, Header, Icon } from "semantic-ui-react";
 import OrderSection from "./orderSection";
 class Settings extends React.Component {
   state = {
@@ -86,10 +86,13 @@ class Settings extends React.Component {
   render() {
     return (
       <>
-        <h1>Welcome to Settings {this.props.currentUserObj.name}</h1>
-        <Grid columns="equal" divided padded>
+        <Header as="h2" textAlign="center">
+          <Icon name="settings" />
+          Welcome to Settings {this.props.currentUserObj.name}
+        </Header>
+        <Grid columns={2} divided padded>
           <Grid.Row color="white" textAlign="left">
-            <Grid.Column>
+            <Grid.Column width={3}>
               <Segment color="white">
                 <SettingSideBar updateEmail={this.updateEmail} />
               </Segment>

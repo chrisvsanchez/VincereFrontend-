@@ -1,7 +1,7 @@
 import React from "react";
 import CheckoutItemCard from "./CheckoutItemCards";
-import { Form, Input, Button, Segment } from "semantic-ui-react";
-
+import { Form, Input, Button, Segment, Header, Grid } from "semantic-ui-react";
+import CheckoutTransaction from "./CheckoutTransaction";
 class CheckoutContainer extends React.Component {
   state = {
     addressForm: false,
@@ -13,6 +13,7 @@ class CheckoutContainer extends React.Component {
     shippingEmail: "",
     zipCode: "",
     currentOrderID: 0,
+    orderitemObj: {},
   };
   turnToItemSection = () => {
     return this.props.cart.map((item) => (
@@ -38,11 +39,12 @@ class CheckoutContainer extends React.Component {
   };
   handleAddressForm = () => {
     return (
-      <Segment>
-        <Form>
+      <Segment inverted>
+        <Form inverted>
           <h2>Shipping Address</h2>
           <Form.Group widths="equal">
             <Form.Input
+              required
               onChange={this.handleFormChange}
               id="form-input-control-first-name"
               control={Input}
@@ -52,6 +54,7 @@ class CheckoutContainer extends React.Component {
               placeholder="First name"
             />
             <Form.Input
+              required
               onChange={this.handleFormChange}
               id="form-input-control-last-name"
               control={Input}
@@ -60,7 +63,10 @@ class CheckoutContainer extends React.Component {
               value={this.state.lastName}
               placeholder="Last name"
             />
+          </Form.Group>
+          <Form.Group widths="equal">
             <Form.Input
+              required
               onChange={this.handleFormChange}
               id="form-input-control-address"
               control={Input}
@@ -71,6 +77,7 @@ class CheckoutContainer extends React.Component {
             />
 
             <Form.Input
+              required
               onChange={this.handleFormChange}
               id="form-input-control-zip-code"
               control={Input}
@@ -79,7 +86,10 @@ class CheckoutContainer extends React.Component {
               value={this.state.zipCode}
               placeholder="Zip Code"
             />
+          </Form.Group>
+          <Form.Group>
             <Form.Input
+              required
               onChange={this.handleFormChange}
               id="form-textarea-control-phone-number"
               control={Input}
@@ -89,6 +99,7 @@ class CheckoutContainer extends React.Component {
               placeholder="Phone Number"
             />
             <Form.Input
+              required
               onChange={this.handleFormChange}
               id="form-input-control-error-email"
               control={Input}
@@ -107,6 +118,7 @@ class CheckoutContainer extends React.Component {
             id="form-button-control-public"
             control={Button}
             content="Confirm"
+            inverted
             label=""
           />
         </Form>
@@ -133,22 +145,47 @@ class CheckoutContainer extends React.Component {
           currentOrderID: orderObj.id,
         });
       });
+    this.createOrderItem();
+  };
+  createOrderItem = () => {
+    this.props.cart.forEach((item) => {
+      fetch(`http://localhost:3000/order_items`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          order_id: this.state.currentOrderID,
+          item_id: item.id,
+        }),
+      })
+        .then((r) => r.json())
+        .then((orderitemObj) => {
+          this.setState({ orderitemObj: orderitemObj });
+        });
+    });
   };
   render() {
     return (
       <>
-        <h1>My Order </h1>
+        {this.props.cart.length === 0 ? (
+          <Header as="h1" textAlign="center">
+            CURRENTLY THERE ARE NO ITEMS IN YOUR CART
+          </Header>
+        ) : null}
         {this.turnToItemSection()}
 
         {this.state.addressForm ? this.handleAddressForm() : null}
+        {this.props.cart.length > 0 ? <CheckoutTransaction /> : null}
+        {this.props.cart.length === 0 ? null : (
+          <Segment inverted>
+            <h2>Total:${this.props.cartTotal}.00</h2>
 
-        <Segment inverted>
-          <h2>Total:${this.props.cartTotal}.00</h2>
-
-          <Button onClick={this.toggleClick} inverted size="large">
-            CHECK OUT
-          </Button>
-        </Segment>
+            <Button onClick={this.toggleClick} inverted size="large">
+              CHECK OUT
+            </Button>
+          </Segment>
+        )}
         <br></br>
         <br></br>
       </>
