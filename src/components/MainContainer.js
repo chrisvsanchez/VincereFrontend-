@@ -3,27 +3,35 @@ import Home from "./Home";
 import About from "./About";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import Settings from "./Settings";
+import Settings from "./Settings/Settings";
 import ProductsPage from "./Products/ProductPage";
 import ItemShowPage from "./Products/ItemShowPage";
 import CheckoutContainer from "./Checkout/CheckoutContainer";
 import { Switch, Route } from "react-router-dom";
-import { TransitionablePortal } from "semantic-ui-react";
+
 class MainContainer extends React.Component {
   state = {
     products: [],
     search: "",
     cart: [],
     cartTotal: 0,
+    currentUser: 3,
   };
 
   componentDidMount() {
     fetch("http://localhost:3000/items")
       .then((r) => r.json())
       .then((allItems) => {
-        console.log("Main container", allItems);
+        // console.log("Main container", allItems);
         this.setState({
           products: allItems,
+        });
+      });
+    fetch(`http://localhost:3000/users/${this.state.currentUser}`)
+      .then((r) => r.json())
+      .then((UserObj) => {
+        this.setState({
+          currentUser: UserObj,
         });
       });
   }
@@ -55,6 +63,11 @@ class MainContainer extends React.Component {
     }
     // };
   }
+  updateCurrentUserObj = (updatedCurrentUser) => {
+    this.setState({
+      currentUserObj: updatedCurrentUser,
+    });
+  };
   addToCard = (currentItemObj) => {
     let addingObj = [currentItemObj, ...this.state.cart];
     this.setState((prevState) => ({ ...prevState, cart: addingObj }));
@@ -89,13 +102,18 @@ class MainContainer extends React.Component {
             <About />
           </Route>
           <Route path="/settings">
-            <Settings />
+            <Settings
+              currentUserObj={this.state.currentUser}
+              updateCurrentUserObj={this.updateCurrentUserObj}
+            />
           </Route>
           <Route path="/cart">
             <CheckoutContainer
               cart={this.state.cart}
               //   cart={this.state.cart}
               removeItem={this.removeItemFromCart}
+              cartTotal={this.state.cartTotal}
+              currentUser={this.state.currentUser}
               cartTotal={this.state.cartTotal}
             />
           </Route>

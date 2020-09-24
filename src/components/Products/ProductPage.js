@@ -9,6 +9,7 @@ class ProductPage extends React.Component {
         key={item.id}
         item={item}
         addToCard={this.addToCard}
+
         // cartTotal={this.props.cartTotal}
       />
     ));
@@ -19,7 +20,7 @@ class ProductPage extends React.Component {
         <h1>Product Page</h1>
         <ItemContainer
           handleSearch={this.props.handleSearch}
-          turnToCard={this.turnToCard()}
+          turnToCard={this.turnToCard}
           searchState={this.props.searchState}
           //   cartTotal={this.props.cartTotal}
         />

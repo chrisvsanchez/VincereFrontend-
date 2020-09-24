@@ -13,7 +13,7 @@ class ItemContainer extends React.Component {
           />
         </Segment>
         <Card.Group centered itemsPerRow={4}>
-          {this.props.turnToCard}
+          {this.props.turnToCard()}
         </Card.Group>
         <br></br>
         <br></br>

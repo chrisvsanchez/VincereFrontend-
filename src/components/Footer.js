@@ -2,8 +2,9 @@ import React from "react";
 import { Button } from "semantic-ui-react";
 const Footer = () => {
   return (
-    <div style={{ backgroundColor: "lightgreen" }}>
-      <h1>Footer</h1>
+    <div style={{ backgroundColor: "black" }}>
+      <br></br>
+      <br></br>
       <div>
         <Button circular color="facebook" icon="facebook" />
         <Button circular color="twitter" icon="twitter" />

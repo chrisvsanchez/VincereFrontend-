@@ -2,7 +2,7 @@ import React from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { Image, Icon } from "semantic-ui-react";
-import MyImage from "/Users/chrissanchez/Flatiron/code/mod5/VincereCC/vincere_frontend/src/Images/mainlogo.png";
+import MyImage from "./Images/mainlogo.png";
 class NavBar extends React.Component {
   render() {
     return (
