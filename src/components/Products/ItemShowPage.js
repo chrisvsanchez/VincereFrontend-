@@ -20,7 +20,6 @@ class ItemShowPage extends React.Component {
     const { image1, name, id, description, price } = this.state.currentItem;
     return (
       <>
-        <h1>Individual Item Page </h1>
         <Segment center style={{ backgroundColor: "black" }}>
           <div>
             <h1 style={{ color: "white" }}>{name}</h1>
@@ -35,6 +34,7 @@ class ItemShowPage extends React.Component {
           <br></br>
           <br></br>
         </Segment>
+
         <Grid divided="vertically">
           <Grid.Row columns={2}>
             <Grid.Column>

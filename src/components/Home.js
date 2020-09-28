@@ -1,8 +1,31 @@
 import React from "react";
 import { Card, Image, Icon } from "semantic-ui-react";
+import Typical from "react-typical";
 function Home() {
   return (
     <>
+      <Typical
+        center
+        steps={[
+          "Vincere ",
+          1000,
+          "Vincere Cycling",
+          1000,
+          "Vincere Cycling Club",
+          1000,
+          "Win",
+          1000,
+          "Win Against",
+          1000,
+          "Win Against All",
+          1000,
+          "Win Against All Odds",
+          1000,
+        ]}
+        loop={Infinity}
+        wrapper="h1"
+        Aligntext="center"
+      />
       <br></br>
       <Image
         size="massive"

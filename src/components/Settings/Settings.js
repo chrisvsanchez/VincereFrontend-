@@ -1,7 +1,7 @@
 import React from "react";
+import OrderSection from "./OrderSection";
 import SettingSideBar from "./SettingSideBar";
 import { Form, Segment, Button, Grid, Header, Icon } from "semantic-ui-react";
-import OrderSection from "./orderSection";
 class Settings extends React.Component {
   state = {
     email: false,
@@ -82,7 +82,14 @@ class Settings extends React.Component {
       [name]: value,
     });
   };
-
+  toggleOrderHistory = () => {
+    this.setState({
+      orderHistory: !this.state.orderHistory,
+    });
+  };
+  renderOrders = () => {
+    return <h1>Hello</h1>;
+  };
   render() {
     return (
       <>
@@ -94,7 +101,10 @@ class Settings extends React.Component {
           <Grid.Row color="white" textAlign="left">
             <Grid.Column width={3}>
               <Segment color="white">
-                <SettingSideBar updateEmail={this.updateEmail} />
+                <SettingSideBar
+                  updateEmail={this.updateEmail}
+                  toggleOrderHistory={this.toggleOrderHistory}
+                />
               </Segment>
             </Grid.Column>
             <Grid.Column>
@@ -108,7 +118,10 @@ class Settings extends React.Component {
         </Grid>
         {/* <SettingSideBar updateEmail={this.updateEmail} /> */}
         {this.state.email ? this.showForm() : null}
-        {this.state.orderHistory ? this.showOrderHistory() : null}
+        {/* {this.state.orderHistory ? this.renderOrders() : null} */}
+        {this.state.orderHistory ? (
+          <OrderSection currentUser={this.props.currentUser} />
+        ) : null}
         <br></br>
         <br></br>
         <br></br>

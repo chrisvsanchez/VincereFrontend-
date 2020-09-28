@@ -2,6 +2,7 @@ import React from "react";
 // import { Card } from "semantic-ui-react";
 import ItemContainer from "./ItemContainer";
 import ItemCard from "./ItemCard";
+import { Header } from "semantic-ui-react";
 class ProductPage extends React.Component {
   turnToCard = (props) => {
     return this.props.products.map((item) => (
@@ -17,7 +18,16 @@ class ProductPage extends React.Component {
   render() {
     return (
       <>
-        <h1>Product Page</h1>
+        <div>
+          <Header as="h1" textAlign="center">
+            CYCLING APPAREL
+          </Header>
+          <Header textAlign="center" as="p">
+            {" "}
+            Swap the tarmac for the trails with our range of technical adventure
+            apparel and highly durable essentials designed for off-road riding.
+          </Header>
+        </div>
         <ItemContainer
           handleSearch={this.props.handleSearch}
           turnToCard={this.turnToCard}

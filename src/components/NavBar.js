@@ -16,10 +16,10 @@ class NavBar extends React.Component {
           <Link to="/shop">Shop</Link>
         </a>
         <a class="item">
-          <Link to="/about">Cycling Club</Link>
+          <Link to="/about">Cycling Club Events</Link>
         </a>
         <a class="image">
-          <Image size={"tiny"} class="image" center src={MyImage} />
+          <Image class="image" size={"tiny"} center src={MyImage} />
         </a>
         <a class="item">
           <Link to="/settings">

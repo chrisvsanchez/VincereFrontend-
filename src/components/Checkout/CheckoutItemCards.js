@@ -16,7 +16,7 @@ class CheckoutItemCards extends React.Component {
       } else {
         return null;
       }
-    });
+    }, this.props.updateCartQuantity(this.state.quantity));
   };
   decrease = () => {
     this.setState((prevState) => {

@@ -16,6 +16,7 @@ class MainContainer extends React.Component {
     cart: [],
     cartTotal: 0,
     currentUser: 3,
+    itemQuantity: 1,
   };
 
   componentDidMount() {
@@ -49,14 +50,17 @@ class MainContainer extends React.Component {
   };
   componentDidUpdate(prevProps, prevState) {
     // cartTotal = () => {
-    if (prevState.cart !== this.state.cart) {
+    if (
+      prevState.cart !== this.state.cart ||
+      prevState.itemQuantity !== this.state.itemQuantity
+    ) {
       let total = this.state.cart.reduce(
-        (sum, product) => sum + product.price,
+        (sum, product) => sum + (product.price *= this.state.itemQuantity),
         0
       );
-
       this.setState({
         cartTotal: total,
+        // itemQuantity: 0,
       });
       console.log("prevState", prevState);
       console.log("State", this.state);
@@ -80,6 +84,11 @@ class MainContainer extends React.Component {
       cart: updatedCart,
     });
     // this.cartTotal();
+  };
+  updateCartQuantity = (quantityupdate) => {
+    this.setState((prevState) => ({
+      itemQuantity: prevState.itemQuantity + 1,
+    }));
   };
   render() {
     return (
@@ -105,6 +114,7 @@ class MainContainer extends React.Component {
             <Settings
               currentUserObj={this.state.currentUser}
               updateCurrentUserObj={this.updateCurrentUserObj}
+              currentUser={this.state.currentUser}
             />
           </Route>
           <Route path="/cart">
@@ -115,6 +125,7 @@ class MainContainer extends React.Component {
               cartTotal={this.state.cartTotal}
               currentUser={this.state.currentUser}
               cartTotal={this.state.cartTotal}
+              updateCartQuantity={this.updateCartQuantity}
             />
           </Route>
           <Route

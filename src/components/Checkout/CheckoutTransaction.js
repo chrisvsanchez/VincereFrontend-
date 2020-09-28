@@ -15,6 +15,16 @@ class CheckoutTransaction extends React.Component {
     this.setState({
       [name]: value,
     });
+    this.handleSubmit = (e) => {
+      e.preventDefault();
+      let cardInfo = {
+        cardName: this.state.cardName,
+        cardNumber: this.state.cardNumber,
+        expirationDate: this.state.expirationDate,
+        cvc: this.state.cvc,
+      };
+      return this.props.togglePaymentForm(cardInfo);
+    };
   };
   render() {
     return (
@@ -71,9 +81,21 @@ class CheckoutTransaction extends React.Component {
               </Grid.Column>
             </Grid.Row>
             {/* <Form.Checkbox label="I agree to the Terms and Conditions" /> */}
-            <Button inverted type="submit">
+            <Form.Button
+              onClick={this.handleSubmit}
+              inverted
+              type="submit"
+              fluid
+              color="green"
+              disabled={
+                !this.state.cardName ||
+                !this.state.cardNumber ||
+                !this.state.expirationDate ||
+                !this.state.cvc
+              }
+            >
               Submit
-            </Button>
+            </Form.Button>
           </Form>
         </Segment>
       </>
