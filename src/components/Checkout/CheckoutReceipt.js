@@ -3,16 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Grid, Modal, Segment, Icon, Image } from "semantic-ui-react";
 function CheckoutReceipt(props) {
   const [open, setOpen] = React.useState(false);
-  //   let turnToRow = () => {
-  //     return props.cart.map((item) => (
-  //       <Grid.Row>
-  //         <Image src={item.image1}></Image>
-  //         {item.name}
-  //         <Grid.Column>{item.quantity}</Grid.Column>
-  //         <Grid.Column>{item.price}</Grid.Column>
-  //       </Grid.Row>
-  //     ));
-  //   };
+
   return (
     <Modal
       centered={false}
@@ -75,13 +66,20 @@ function CheckoutReceipt(props) {
             <h2>Shipping: Free 2-Day Shipping</h2>
             <h2>Subtotal: ${props.cartTotal}</h2>
             <h2>Taxes: ${0.08875 * props.cartTotal}</h2>
-            <h1>Total: ${props.cartTotal + props.cartTotal * 0.08875}.00</h1>
+            <h1>Total: ${props.cartTotal + props.cartTotal * 0.08875}</h1>
           </Grid.Row>
         </Grid.Column>
       </Grid>
       <Modal.Actions>
         <Link to="/">
-          <Button onClick={() => setOpen(false)}>Return Home</Button>
+          <Button
+            onClick={() => {
+              setOpen(false);
+              props.purchaseComplete();
+            }}
+          >
+            Return Home
+          </Button>
         </Link>
       </Modal.Actions>
     </Modal>

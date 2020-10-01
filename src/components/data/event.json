@@ -1,0 +1,31 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "name": "Bear Mountain Climb 60k",
+      "location_name": "Bear Mountain",
+      "address": "Palisades Parkway or Route 9W North\n    Bear Mountain, NY 10911",
+      "event_time": "7:00 AM",
+      "date": "October 3, 2020",
+      "coordinates": [-73.93003, 41.018946]
+    },
+    {
+      "id": 2,
+      "name": "North County Trailway 70k",
+      "location_name": "Van Courtlandt Park ",
+      "address": "Broadway and, Van Cortlandt Park S, The Bronx, NY 10471",
+      "event_time": "6:00 AM",
+      "date": "October 10, 2020",
+      "coordinates": [-73.896706, 40.895804]
+    },
+    {
+      "id": 3,
+      "name": "Vincere's Annual Century Ride",
+      "location_name": "Huddy Park in Highlands, New Jersey",
+      "address": "329 Bay Ave 325, Highlands, NJ 077321",
+      "event_time": "6:00 AM",
+      "date": "October 17, 2020",
+      "coordinates": [-75.032921, 39.492028]
+    }
+  ]
+}

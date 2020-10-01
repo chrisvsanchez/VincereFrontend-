@@ -8,6 +8,7 @@ import ProductsPage from "./Products/ProductPage";
 import ItemShowPage from "./Products/ItemShowPage";
 import CheckoutContainer from "./Checkout/CheckoutContainer";
 import { Switch, Route } from "react-router-dom";
+import EventContainer from "./Event/EventContainer";
 
 class MainContainer extends React.Component {
   state = {
@@ -15,10 +16,14 @@ class MainContainer extends React.Component {
     search: "",
     cart: [],
     cartTotal: 0,
-    currentUser: 3,
+    currentUser: 1,
     itemQuantity: 1,
   };
-
+  purchaseComplete = () => {
+    this.setState({
+      cart: [],
+    });
+  };
   componentDidMount() {
     fetch("http://localhost:3000/items")
       .then((r) => r.json())
@@ -93,7 +98,7 @@ class MainContainer extends React.Component {
   render() {
     return (
       <>
-        <NavBar />
+        <NavBar cart={this.state.cart} />
         <Switch>
           <Route exact path="/">
             <Home />
@@ -107,8 +112,8 @@ class MainContainer extends React.Component {
               //   cartTotal={this.cartTotal}
             />
           </Route>
-          <Route path="/about">
-            <About />
+          <Route path="/events">
+            <EventContainer currentUser={this.state.currentUser} />
           </Route>
           <Route path="/settings">
             <Settings
@@ -120,12 +125,11 @@ class MainContainer extends React.Component {
           <Route path="/cart">
             <CheckoutContainer
               cart={this.state.cart}
-              //   cart={this.state.cart}
               removeItem={this.removeItemFromCart}
               cartTotal={this.state.cartTotal}
               currentUser={this.state.currentUser}
-              cartTotal={this.state.cartTotal}
               updateCartQuantity={this.updateCartQuantity}
+              purchaseComplete={this.purchaseComplete}
             />
           </Route>
           <Route

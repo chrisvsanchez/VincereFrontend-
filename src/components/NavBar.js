@@ -16,7 +16,7 @@ class NavBar extends React.Component {
           <Link to="/shop">Shop</Link>
         </a>
         <a class="item">
-          <Link to="/about">Cycling Club Events</Link>
+          <Link to="/events">Cycling Club Events</Link>
         </a>
         <a class="image">
           <Image class="image" size={"tiny"} center src={MyImage} />
@@ -30,7 +30,8 @@ class NavBar extends React.Component {
         </a>
         <a class="item">
           <Link to="/cart">
-            <Icon size={"large"} color={"black"} name="shopping cart" />
+            <Icon size={"large"} color={"black"} name="shopping cart" />{" "}
+            {this.props.cart.length === 0 ? null : this.props.cart.length}
           </Link>
         </a>
       </div>

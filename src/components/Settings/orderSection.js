@@ -4,34 +4,22 @@ import Moment from "react-moment";
 import "moment-timezone";
 import CheckoutReceipt from "../Checkout/CheckoutReceipt";
 class OrderSection extends React.Component {
-  state = {
-    currentUserObj: [],
-  };
-  componentDidMount() {
-    fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
-      .then((r) => r.json())
-      .then((UserObj) => {
-        this.setState({
-          currentUserObj: UserObj,
-        });
-      });
-  }
+  // state = {
+  //   currentUserObj: [],
+  // };
+  // componentDidMount() {
+  //   fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
+  //     .then((r) => r.json())
+  //     .then((UserObj) => {
+  //       this.setState({
+  //         currentUserObj: UserObj,
+  //       });
+  //     });
+  // }
   showAddress = () => {
-    // this.state.currentUserObj;
-    {
-      console.log(this.state.currentUserObj.orders);
-    }
-    // eachOrder.items.map(items =>{
-    //   <h3>{items.name}</h3>
-    //   <h3>{items.quantity}</h3>
+    // let reversedOrders = this.props.currentUser.orders.reverse;
     return this.props.currentUser.orders.map((eachOrder) => (
-      // <div>
-      //   <h1>Order History</h1>
-      //   <h1>{eachOrder.address}</h1>
-      //   {eachOrder.items.map((item) => (
-      //     <h3>{item.name} </h3>
-      //   ))}
-      // </div>
+      // return this.state.currentUserObj.orders.map((eachOrder) => (
       <>
         <Grid columns="equal" divided inverted padded>
           <Grid.Row color="black" textAlign="center">
@@ -44,19 +32,20 @@ class OrderSection extends React.Component {
             <Grid.Column>
               <Segment color="black" inverted>
                 <Header>Order Number</Header>
-                {eachOrder.orderNumber}
+                {eachOrder.confirmation}
               </Segment>
             </Grid.Column>
             <Grid.Column>
               <Segment color="black" inverted>
                 <Header>Number of Items Purchased:</Header>
+                {console.log(eachOrder)}
                 {eachOrder.items.length}
               </Segment>
             </Grid.Column>
             <Grid.Column>
               <Segment color="black" inverted>
-                <Header>Order Number</Header>
-                {"$" + eachOrder.total + ".00"}
+                <Header>Total</Header>
+                {eachOrder.total}
               </Segment>
             </Grid.Column>
             <Grid.Column>
