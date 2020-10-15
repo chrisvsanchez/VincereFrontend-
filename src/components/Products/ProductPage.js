@@ -34,6 +34,12 @@ class ProductPage extends React.Component {
           searchState={this.props.searchState}
           //   cartTotal={this.props.cartTotal}
         />
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </>
     );
   }

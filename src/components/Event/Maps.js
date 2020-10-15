@@ -5,11 +5,11 @@ import * as ride from "../data/event.json";
 const APIKEY = process.env.REACT_APP_MAPBOX_TOKEN;
 function Map() {
   const [viewport, setViewport] = useState({
-    latitude: 40.712728,
-    longitude: -74.006015,
+    latitude: 40.9312099,
+    longitude: -73.8987469,
     width: "80vw",
     height: "70vh",
-    zoom: 9,
+    zoom: 11,
   });
   const [selectedEvent, setSelectedEvent] = useState(null);
   useEffect(() => {
@@ -52,7 +52,11 @@ function Map() {
                 setSelectedEvent(eventObj);
               }}
             >
-              <Image src={"final.vincere.sword.svg"}></Image>
+              <Image
+                size="mini"
+                className="marker"
+                src={"final.vincere.sword.svg"}
+              ></Image>
             </button>
           </Marker>
         ))}

@@ -1,5 +1,5 @@
 import React from "react";
-import OrderSection from "./OrderSection";
+import OrderSection from "./orderSection";
 import SettingSideBar from "./SettingSideBar";
 import { Form, Segment, Button, Grid, Header, Icon } from "semantic-ui-react";
 class Settings extends React.Component {

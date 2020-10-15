@@ -39,8 +39,8 @@ class CheckoutItemCards extends React.Component {
       <>
         <Grid celled>
           <Grid.Row>
-            <Grid.Column width={3}>
-              <Image src={image1} />
+            <Grid.Column width={1}>
+              <Image size="small" src={image1} />
             </Grid.Column>
             <Grid.Column width={3}>
               <Header as="h3" textAlign="center">
@@ -74,6 +74,10 @@ class CheckoutItemCards extends React.Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </>
     );
   }

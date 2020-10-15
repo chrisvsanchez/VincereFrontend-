@@ -10,14 +10,14 @@ class itemCard extends React.Component {
     const { image1, name, price, id } = this.props.item;
     return (
       <Link to={`/itemshowpage/${id}`}>
-        <Card>
+        <Card centered>
           <br></br>
           <Image
             src={image1}
             //   Toggle image based on synthetic event
             //   onMouseOver={this.toggleImage}
             as="a"
-            size="medium"
+            size="small"
           />
           <div>
             <Header as="h4" textAlign="center">

@@ -2,6 +2,8 @@ import React from "react";
 import Map from "./Maps";
 import EventCards from "./EventCards";
 import { Header } from "semantic-ui-react";
+import Typical from "react-typical";
+import itemCard from "../Products/ItemCard";
 class EventContainer extends React.Component {
   render() {
     return (
@@ -9,9 +11,13 @@ class EventContainer extends React.Component {
         <Header as="h1" textAlign="center">
           Vincere Cycling Events
         </Header>
+        <div></div>
         <Map></Map>
         <EventCards currentUser={this.props.currentUser} />
-        <h1>EventContainer</h1>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
     );
   }

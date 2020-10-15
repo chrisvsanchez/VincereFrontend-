@@ -2,33 +2,106 @@ import React from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { Image, Icon } from "semantic-ui-react";
-import MyImage from "./Images/mainlogo.png";
+import MyImage from "./Images/Vincerenycycling_2line_black.png";
 class NavBar extends React.Component {
   render() {
     return (
       //  Men Women  Cycling Club logo  Account Cart
 
-      <div class="ui menu" id="menu">
+      <div
+        class="ui menu"
+        id="menu"
+        style={{
+          color: "black",
+        }}
+      >
         <a class="item">
-          <Link to="/">Home</Link>
+          <Link
+            to="/"
+            style={{
+              color: "black",
+            }}
+          >
+            Home
+          </Link>
         </a>
         <a class="item">
-          <Link to="/shop">Shop</Link>
+          <Link
+            to="/shop"
+            style={{
+              color: "black",
+            }}
+          >
+            Shop
+          </Link>
         </a>
-        <a class="item">
-          <Link to="/events">Cycling Club Events</Link>
+        <a
+          class="item"
+          style={{
+            color: "black",
+          }}
+        >
+          <Link
+            to="/events"
+            style={{
+              color: "black",
+            }}
+          >
+            Cycling Club Events
+          </Link>
         </a>
         <a class="image">
-          <Image class="image" size={"tiny"} center src={MyImage} />
+          <Image class="image" size={"medium"} center src={MyImage} />
         </a>
-        <a class="item">
-          <Link to="/settings">
+        <a
+          class="item"
+          style={{
+            color: "black",
+          }}
+        >
+          <Link
+            to="/signup"
+            style={{
+              color: "black",
+            }}
+          >
+            Sign up
+          </Link>
+        </a>
+        <a
+          class="item"
+          style={{
+            color: "black",
+          }}
+        >
+          <Link
+            to="/login"
+            style={{
+              color: "black",
+            }}
+          >
+            Login
+          </Link>
+        </a>
+        <a class="item" style={{}}>
+          <Link
+            to="/settings"
+            style={{
+              color: "black",
+            }}
+          >
             Account
             <Icon color={"black"} size={"large"} name="setting" />
             <br></br>
           </Link>
         </a>
-        <a class="item">
+        <a
+          class="item"
+          // style={{
+          //   position: "absolute",
+          //   right: "0",
+          // }}
+        >
           <Link to="/cart">
             <Icon size={"large"} color={"black"} name="shopping cart" />{" "}
             {this.props.cart.length === 0 ? null : this.props.cart.length}

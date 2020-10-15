@@ -7,8 +7,10 @@ import Settings from "./Settings/Settings";
 import ProductsPage from "./Products/ProductPage";
 import ItemShowPage from "./Products/ItemShowPage";
 import CheckoutContainer from "./Checkout/CheckoutContainer";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import EventContainer from "./Event/EventContainer";
+import SignUp from "./SignUp";
+import Login from "./Login";
 
 class MainContainer extends React.Component {
   state = {
@@ -16,8 +18,13 @@ class MainContainer extends React.Component {
     search: "",
     cart: [],
     cartTotal: 0,
-    currentUser: 1,
+    currentUser: null,
     itemQuantity: 1,
+  };
+  handleLogin = (currentUser) => {
+    this.setState({ currentUser }, () => {
+      this.props.history.push("/");
+    });
   };
   purchaseComplete = () => {
     this.setState({
@@ -33,13 +40,13 @@ class MainContainer extends React.Component {
           products: allItems,
         });
       });
-    fetch(`http://localhost:3000/users/${this.state.currentUser}`)
-      .then((r) => r.json())
-      .then((UserObj) => {
-        this.setState({
-          currentUser: UserObj,
-        });
-      });
+    // fetch(`http://localhost:3000/users/${this.state.currentUser}`)
+    //   .then((r) => r.json())
+    //   .then((UserObj) => {
+    //     this.setState({
+    //       currentUser: UserObj,
+    //     });
+    //   });
   }
   handleInput = (e) => {
     const userSearchInput = e.target.value;
@@ -138,10 +145,16 @@ class MainContainer extends React.Component {
               <ItemShowPage {...props} addToCard={this.addToCard} />
             )}
           />
+          <Route path="/signup">
+            <SignUp handleLogin={this.handleLogin} />
+          </Route>
+          <Route path="/login">
+            <Login handleLogin={this.handleLogin} />
+          </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </>
     );
   }
 }
-export default MainContainer;
+export default withRouter(MainContainer);

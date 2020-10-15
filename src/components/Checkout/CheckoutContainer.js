@@ -478,6 +478,11 @@ class CheckoutContainer extends React.Component {
         )}
         <br></br>
         <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </>
     );
   }

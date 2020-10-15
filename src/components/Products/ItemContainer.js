@@ -1,6 +1,6 @@
 import React from "react";
 import { Segment, Card } from "semantic-ui-react";
-import Search from "/Users/chrissanchez/Flatiron/code/mod5/VincereCC/vincere_frontend/src/components/Search.js";
+import Search from "../Search";
 class ItemContainer extends React.Component {
   render() {
     return (

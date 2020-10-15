@@ -18,7 +18,7 @@ class OrderSection extends React.Component {
   // }
   showAddress = () => {
     // let reversedOrders = this.props.currentUser.orders.reverse;
-    return this.props.currentUser.orders.map((eachOrder) => (
+    return this.props.currentUser.orders.reverse().map((eachOrder) => (
       // return this.state.currentUserObj.orders.map((eachOrder) => (
       <>
         <Grid columns="equal" divided inverted padded>
@@ -59,12 +59,7 @@ class OrderSection extends React.Component {
     ));
   };
   render() {
-    return (
-      <>
-        <h1>yodifyusaodifsuafoiu</h1>
-        {this.showAddress()}
-      </>
-    );
+    return <>{this.showAddress()}</>;
   }
 }
 export default OrderSection;
