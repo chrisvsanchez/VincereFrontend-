@@ -18,7 +18,7 @@ class MainContainer extends React.Component {
     search: "",
     cart: [],
     cartTotal: 0,
-    currentUser: null,
+    currentUser: {},
     itemQuantity: 1,
   };
   handleLogin = (currentUser) => {
@@ -32,6 +32,13 @@ class MainContainer extends React.Component {
     });
   };
   componentDidMount() {
+    if (localStorage.userId) {
+      fetch(`http://localhost:3000/autologin/${localStorage.userId}`)
+        .then((r) => r.json())
+        .then((UserObj) => {
+          this.handleLogin(UserObj);
+        });
+    }
     fetch("http://localhost:3000/items")
       .then((r) => r.json())
       .then((allItems) => {
@@ -40,13 +47,6 @@ class MainContainer extends React.Component {
           products: allItems,
         });
       });
-    // fetch(`http://localhost:3000/users/${this.state.currentUser}`)
-    //   .then((r) => r.json())
-    //   .then((UserObj) => {
-    //     this.setState({
-    //       currentUser: UserObj,
-    //     });
-    //   });
   }
   handleInput = (e) => {
     const userSearchInput = e.target.value;
@@ -128,6 +128,7 @@ class MainContainer extends React.Component {
               updateCurrentUserObj={this.updateCurrentUserObj}
               currentUser={this.state.currentUser}
             />
+            )
           </Route>
           <Route path="/cart">
             <CheckoutContainer
