@@ -32,11 +32,18 @@ class MainContainer extends React.Component {
     });
   };
   componentDidMount() {
-    if (localStorage.userId) {
-      fetch(`http://localhost:3000/autologin/${localStorage.userId}`)
+    if (localStorage.token) {
+      fetch(`http://localhost:3000/autologin`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
         .then((r) => r.json())
-        .then((UserObj) => {
-          this.handleLogin(UserObj);
+        .then((loggedInUser) => {
+          // if (!data.error) {
+          console.log(loggedInUser);
+          this.handleLogin(loggedInUser);
+          // }
         });
     }
     fetch("http://localhost:3000/items")
@@ -104,7 +111,7 @@ class MainContainer extends React.Component {
   };
   handleLogout = () => {
     // localStorage.clear();
-    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
     this.setState({
       currentUser: null,
     });

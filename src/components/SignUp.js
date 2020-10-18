@@ -20,9 +20,10 @@ class SignUp extends React.Component {
       body: JSON.stringify(this.state),
     })
       .then((r) => r.json())
-      .then((newUser) => {
-        this.props.handleLogin(newUser);
-        localStorage.userId = newUser.id;
+      .then((data) => {
+        const { user, token } = data;
+        this.props.handleLogin(user);
+        localStorage.token = token;
       });
   };
   render() {

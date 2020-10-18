@@ -18,9 +18,11 @@ class Login extends React.Component {
       body: JSON.stringify(this.state),
     })
       .then((r) => r.json())
-      .then((loggedInUser) => {
-        this.props.handleLogin(loggedInUser);
-        localStorage.userId = loggedInUser.id;
+      .then((data) => {
+        console.log(data);
+        const { user, token } = data;
+        this.props.handleLogin(user);
+        localStorage.token = token;
       });
   };
   render() {
