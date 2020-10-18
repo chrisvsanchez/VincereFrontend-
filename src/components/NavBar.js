@@ -53,48 +53,71 @@ class NavBar extends React.Component {
         <a class="image">
           <Image class="image" size={"medium"} center src={MyImage} />
         </a>
-        <a
-          class="item"
-          style={{
-            color: "black",
-          }}
-        >
-          <Link
-            to="/signup"
+        {this.props.currentUser === null ? (
+          <>
+            <a
+              class="item"
+              style={{
+                color: "black",
+              }}
+            >
+              <Link
+                to="/signup"
+                style={{
+                  color: "black",
+                }}
+              >
+                Sign up
+              </Link>
+            </a>
+
+            <a
+              class="item"
+              style={{
+                color: "black",
+              }}
+            >
+              <Link
+                to="/login"
+                style={{
+                  color: "black",
+                }}
+              >
+                Login
+              </Link>
+            </a>
+          </>
+        ) : (
+          <a
+            class="item"
             style={{
               color: "black",
             }}
           >
-            Sign up
-          </Link>
-        </a>
-        <a
-          class="item"
-          style={{
-            color: "black",
-          }}
-        >
-          <Link
-            to="/login"
-            style={{
-              color: "black",
-            }}
-          >
-            Login
-          </Link>
-        </a>
-        <a class="item" style={{}}>
-          <Link
-            to="/settings"
-            style={{
-              color: "black",
-            }}
-          >
-            Account
-            <Icon color={"black"} size={"large"} name="setting" />
-            <br></br>
-          </Link>
-        </a>
+            <Link
+              to="/unknown"
+              style={{
+                color: "black",
+              }}
+            >
+              Logout
+            </Link>
+          </a>
+        )}
+        {this.props.currentUser === null ? null : (
+          <a class="item" style={{}}>
+            <Link
+              to="/settings"
+              style={{
+                color: "black",
+              }}
+            >
+              Account
+              <Icon color={"black"} size={"large"} name="setting" />
+              <br></br>
+            </Link>
+          </a>
+        )}
         <a
           class="item"
           // style={{

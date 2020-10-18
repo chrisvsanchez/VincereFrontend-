@@ -18,7 +18,7 @@ class MainContainer extends React.Component {
     search: "",
     cart: [],
     cartTotal: 0,
-    currentUser: {},
+    currentUser: null,
     itemQuantity: 1,
   };
   handleLogin = (currentUser) => {
@@ -105,7 +105,7 @@ class MainContainer extends React.Component {
   render() {
     return (
       <>
-        <NavBar cart={this.state.cart} />
+        <NavBar cart={this.state.cart} currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path="/">
             <Home />
