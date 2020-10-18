@@ -102,10 +102,21 @@ class MainContainer extends React.Component {
       itemQuantity: prevState.itemQuantity + 1,
     }));
   };
+  handleLogout = () => {
+    // localStorage.clear();
+    localStorage.removeItem("userId");
+    this.setState({
+      currentUser: null,
+    });
+  };
   render() {
     return (
       <>
-        <NavBar cart={this.state.cart} currentUser={this.state.currentUser} />
+        <NavBar
+          cart={this.state.cart}
+          currentUser={this.state.currentUser}
+          handleLogout={this.handleLogout}
+        />
         <Switch>
           <Route exact path="/">
             <Home />

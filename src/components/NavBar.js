@@ -90,12 +90,12 @@ class NavBar extends React.Component {
         ) : (
           <a
             class="item"
+            onClick={this.props.handleLogout}
             style={{
               color: "black",
             }}
           >
             <Link
-              to="/unknown"
               style={{
                 color: "black",
               }}
