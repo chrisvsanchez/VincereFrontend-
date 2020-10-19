@@ -96,6 +96,7 @@ class NavBar extends React.Component {
             }}
           >
             <Link
+              to="/"
               style={{
                 color: "black",
               }}

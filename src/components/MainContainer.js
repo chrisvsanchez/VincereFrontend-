@@ -112,10 +112,14 @@ class MainContainer extends React.Component {
   handleLogout = () => {
     // localStorage.clear();
     localStorage.removeItem("token");
-    this.setState({
-      currentUser: null,
-    });
+    this.setState(
+      {
+        currentUser: null,
+      },
+      () => this.props.history.push("/")
+    );
   };
+
   render() {
     return (
       <>
@@ -141,12 +145,13 @@ class MainContainer extends React.Component {
             <EventContainer currentUser={this.state.currentUser} />
           </Route>
           <Route path="/settings">
-            <Settings
-              currentUserObj={this.state.currentUser}
-              updateCurrentUserObj={this.updateCurrentUserObj}
-              currentUser={this.state.currentUser}
-            />
-            )
+            {this.currentUser ? null : (
+              <Settings
+                currentUserObj={this.state.currentUser}
+                updateCurrentUserObj={this.updateCurrentUserObj}
+                currentUser={this.state.currentUser}
+              />
+            )}
           </Route>
           <Route path="/cart">
             <CheckoutContainer

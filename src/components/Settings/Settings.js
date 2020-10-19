@@ -95,7 +95,8 @@ class Settings extends React.Component {
       <>
         <Header as="h2" textAlign="center">
           <Icon name="settings" />
-          Welcome to Settings {this.props.currentUserObj.name}
+          Welcome to Settings
+          {this.props.currentUserObj.name}
         </Header>
         <Grid columns={2} divided padded>
           <Grid.Row color="white" textAlign="left">
