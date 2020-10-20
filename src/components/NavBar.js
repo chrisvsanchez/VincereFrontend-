@@ -6,48 +6,20 @@ import MyImage from "./Images/Vincerenycycling_2line_black.png";
 class NavBar extends React.Component {
   render() {
     return (
-      //  Men Women  Cycling Club logo  Account Cart
-
-      <div
-        class="ui menu"
-        id="menu"
-        style={{
-          color: "black",
-        }}
-      >
+      <div class="ui menu" id="menu">
         <a class="item">
-          <Link
-            to="/"
-            style={{
-              color: "black",
-            }}
-          >
-            Home
+          <Link to="/">
+            <h3>Home</h3>
           </Link>
         </a>
         <a class="item">
-          <Link
-            to="/shop"
-            style={{
-              color: "black",
-            }}
-          >
-            Shop
+          <Link to="/shop">
+            <h3>Shop</h3>
           </Link>
         </a>
-        <a
-          class="item"
-          style={{
-            color: "black",
-          }}
-        >
-          <Link
-            to="/events"
-            style={{
-              color: "black",
-            }}
-          >
-            Cycling Club Events
+        <a class="item">
+          <Link to="/events">
+            <h3>Cycling Club Events</h3>
           </Link>
         </a>
         <a class="image">
@@ -55,77 +27,35 @@ class NavBar extends React.Component {
         </a>
         {this.props.currentUser === null ? (
           <>
-            <a
-              class="item"
-              style={{
-                color: "black",
-              }}
-            >
-              <Link
-                to="/signup"
-                style={{
-                  color: "black",
-                }}
-              >
-                Sign up
+            <a class="item">
+              <Link to="/signup">
+                <h3>Sign up</h3>
               </Link>
             </a>
 
-            <a
-              class="item"
-              style={{
-                color: "black",
-              }}
-            >
-              <Link
-                to="/login"
-                style={{
-                  color: "black",
-                }}
-              >
-                Login
+            <a class="item">
+              <Link to="/login">
+                <h3>Login</h3>
               </Link>
             </a>
           </>
         ) : (
-          <a
-            class="item"
-            onClick={this.props.handleLogout}
-            style={{
-              color: "black",
-            }}
-          >
-            <Link
-              to="/"
-              style={{
-                color: "black",
-              }}
-            >
-              Logout
+          <a class="item" onClick={this.props.handleLogout}>
+            <Link to="/">
+              <h3>Logout</h3>
             </Link>
           </a>
         )}
         {this.props.currentUser === null ? null : (
           <a class="item" style={{}}>
-            <Link
-              to="/settings"
-              style={{
-                color: "black",
-              }}
-            >
-              Account
+            <Link to="/settings">
+              <h3>Account</h3>
               <Icon color={"black"} size={"large"} name="setting" />
               <br></br>
             </Link>
           </a>
         )}
-        <a
-          class="item"
-          // style={{
-          //   position: "absolute",
-          //   right: "0",
-          // }}
-        >
+        <a class="item">
           <Link to="/cart">
             <Icon size={"large"} color={"black"} name="shopping cart" />{" "}
             {this.props.cart.length === 0 ? null : this.props.cart.length}
