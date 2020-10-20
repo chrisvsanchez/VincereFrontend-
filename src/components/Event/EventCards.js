@@ -11,6 +11,7 @@ import {
 import Bear from "../Images/Bear mountain.png";
 import NorthCounty from "../Images/vancortland.png";
 import Century from "../Images/century of the year.png";
+
 // import Map from "./Map";
 class EventCards extends React.Component {
   state = { events: [], createdSignUpObj: [], num: 1 };
