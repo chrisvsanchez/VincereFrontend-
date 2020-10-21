@@ -117,9 +117,9 @@ class Settings extends React.Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        {/* <SettingSideBar updateEmail={this.updateEmail} /> */}
+
         {this.state.email ? this.showForm() : null}
-        {/* {this.state.orderHistory ? this.renderOrders() : null} */}
+
         {this.state.orderHistory ? (
           <OrderSection currentUser={this.props.currentUser} />
         ) : null}

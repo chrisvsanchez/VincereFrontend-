@@ -20,7 +20,7 @@ class Login extends React.Component {
     })
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         const { user, token } = data;
         this.props.handleLogin(user);
         localStorage.token = token;
@@ -72,7 +72,7 @@ class Login extends React.Component {
               <br></br>
               <br></br>
               {/* <input type="submit" value="Login" /> */}
-              <Button size="large" inverted type="submit">
+              <Button size="large" fluid inverted type="submit">
                 Login
               </Button>
             </Form>

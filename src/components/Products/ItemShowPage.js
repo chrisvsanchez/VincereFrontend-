@@ -7,11 +7,24 @@ import {
   Dropdown,
   Header,
 } from "semantic-ui-react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 class ItemShowPage extends React.Component {
   state = {
     currentItem: [],
     imageHover: false,
   };
+  addedItem = () =>
+    toast.info(<h3>{`Added item to cart!`}</h3>, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   componentDidMount() {
     fetch(`http://localhost:3000/items/${this.props.match.params.id}`)
       .then((r) => r.json())
@@ -47,6 +60,18 @@ class ItemShowPage extends React.Component {
     } = this.state.currentItem;
     return (
       <>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+
         <br></br>
         <br></br>
         <Segment center style={{ backgroundColor: "black" }}>
@@ -55,7 +80,10 @@ class ItemShowPage extends React.Component {
             <Button
               floated="right"
               inverted
-              onClick={() => this.props.addToCard(this.state.currentItem)}
+              onClick={() => {
+                this.props.addToCard(this.state.currentItem);
+                this.addedItem();
+              }}
             >
               ADD TO CART
             </Button>

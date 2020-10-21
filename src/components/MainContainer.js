@@ -40,10 +40,8 @@ class MainContainer extends React.Component {
       })
         .then((r) => r.json())
         .then((loggedInUser) => {
-          // if (!data.error) {
-          console.log(loggedInUser);
+          // console.log(loggedInUser);
           this.handleLogin(loggedInUser);
-          // }
         });
     }
     fetch("http://localhost:3000/items")
@@ -145,13 +143,13 @@ class MainContainer extends React.Component {
             <EventContainer currentUser={this.state.currentUser} />
           </Route>
           <Route path="/settings">
-            {this.currentUser ? null : (
+            {this.currentUser !== null ? (
               <Settings
                 currentUserObj={this.state.currentUser}
                 updateCurrentUserObj={this.updateCurrentUserObj}
                 currentUser={this.state.currentUser}
               />
-            )}
+            ) : null}
           </Route>
           <Route path="/cart">
             <CheckoutContainer

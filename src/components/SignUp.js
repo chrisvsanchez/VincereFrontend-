@@ -99,7 +99,7 @@ class SignUp extends React.Component {
               <br></br>
               <br></br>
               {/* <input type="submit" value="Signup" /> */}
-              <Button size="large" inverted type="submit">
+              <Button size="large" fluid inverted type="submit">
                 Create Account
               </Button>
             </Form>

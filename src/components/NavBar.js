@@ -9,17 +9,17 @@ class NavBar extends React.Component {
       <div class="ui menu" id="menu">
         <a class="item">
           <Link to="/">
-            <h3>Home</h3>
+            <h4 class="nav-text">Home</h4>
           </Link>
         </a>
         <a class="item">
           <Link to="/shop">
-            <h3>Shop</h3>
+            <h4 class="nav-text">Shop</h4>
           </Link>
         </a>
         <a class="item">
           <Link to="/events">
-            <h3>Cycling Club Events</h3>
+            <h4 class="nav-text">Cycling Club Events</h4>
           </Link>
         </a>
         <a class="image">
@@ -29,27 +29,27 @@ class NavBar extends React.Component {
           <>
             <a class="item">
               <Link to="/signup">
-                <h3>Sign up</h3>
+                <h4 class="nav-text">Sign up</h4>
               </Link>
             </a>
 
             <a class="item">
               <Link to="/login">
-                <h3>Login</h3>
+                <h4 class="nav-text">Login</h4>
               </Link>
             </a>
           </>
         ) : (
           <a class="item" onClick={this.props.handleLogout}>
             <Link to="/">
-              <h3>Logout</h3>
+              <h4 class="nav-text">Logout</h4>
             </Link>
           </a>
         )}
         {this.props.currentUser === null ? null : (
           <a class="item" style={{}}>
             <Link to="/settings">
-              <h3>Account</h3>
+              <h4 class="nav-text">Account</h4>
               <Icon color={"black"} size={"large"} name="setting" />
               <br></br>
             </Link>
