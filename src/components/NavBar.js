@@ -3,6 +3,8 @@ import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { Image, Icon } from "semantic-ui-react";
 import MyImage from "./Images/Vincerenycycling_2line_black.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 class NavBar extends React.Component {
   render() {
     return (
@@ -57,7 +59,7 @@ class NavBar extends React.Component {
         )}
         <a class="item">
           <Link to="/cart">
-            <Icon size={"large"} color={"black"} name="shopping cart" />{" "}
+            <Icon size={"large"} color={"black"} name="shopping cart" />
             {this.props.cart.length === 0 ? null : this.props.cart.length}
           </Link>
         </a>

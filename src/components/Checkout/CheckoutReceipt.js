@@ -60,16 +60,43 @@ function CheckoutReceipt(props) {
         </Modal.Description>
         {props.turnToRow()}
       </Modal.Content>
-      <Grid>
-        <Grid.Column>
-          <Grid.Row textAlign="center">
-            <h2>Shipping: Free 2-Day Shipping</h2>
-            <h2>Subtotal: ${props.cartTotal}</h2>
-            <h2>Taxes: ${0.08875 * props.cartTotal}</h2>
-            <h1>Total: ${props.cartTotal + props.cartTotal * 0.08875}</h1>
+      <Segment inverted>
+        <Grid centered columns={2}>
+          <Grid.Row centered>
+            <Grid.Column textAlign="right">
+              <h4>Shipping</h4>
+            </Grid.Column>
+            <Grid.Column>
+              <h4>Free 2-Day Shipping</h4>
+            </Grid.Column>
           </Grid.Row>
-        </Grid.Column>
-      </Grid>
+          <Grid.Row centered>
+            <Grid.Column textAlign="right">
+              <h4>Subtotal</h4>
+            </Grid.Column>
+            <Grid.Column>{<h4>${props.cartTotal.toFixed(2)}</h4>}</Grid.Column>
+          </Grid.Row>
+          <Grid.Row centered>
+            <Grid.Column textAlign="right">
+              <h4>Tax</h4>
+            </Grid.Column>
+            <Grid.Column>
+              <h4>${(0.08875 * props.cartTotal).toFixed(2)}</h4>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row centered>
+            <Grid.Column textAlign="right">
+              <h1>Total</h1>
+            </Grid.Column>
+            <Grid.Column>
+              <h1>
+                ${(props.cartTotal + props.cartTotal * 0.08875).toFixed(2)}
+              </h1>
+            </Grid.Column>
+          </Grid.Row>
+          {/* </Grid.Row> */}
+        </Grid>
+      </Segment>
       <Modal.Actions>
         <Link to="/">
           <Button
