@@ -37,8 +37,8 @@ class Settings extends React.Component {
   };
   showForm = () => {
     return (
-      <Segment>
-        <Form onSubmit={this.submitHandler}>
+      <Segment inverted>
+        <Form inverted onSubmit={this.submitHandler}>
           <h1>{"Update Email"}</h1>
           <h3>
             <strong>Current Email: </strong> {this.props.currentUserObj.email}
@@ -63,6 +63,7 @@ class Settings extends React.Component {
           </Form.Group>
           <Button.Group>
             <Form.Button>Submit</Form.Button>
+            <br></br>
             <Button onClick={this.updateEmail}>Cancel</Button>
           </Button.Group>
         </Form>

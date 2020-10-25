@@ -38,14 +38,13 @@ class OrderSection extends React.Component {
             <Grid.Column>
               <Segment color="black" inverted>
                 <Header>Number of Items Purchased:</Header>
-                {console.log(eachOrder)}
                 {eachOrder.items.length}
               </Segment>
             </Grid.Column>
             <Grid.Column>
               <Segment color="black" inverted>
                 <Header>Total</Header>
-                {eachOrder.total}
+                <h3>$ {eachOrder.total.toFixed(2)}</h3>
               </Segment>
             </Grid.Column>
             <Grid.Column>

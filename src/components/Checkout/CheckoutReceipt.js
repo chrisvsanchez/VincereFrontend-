@@ -100,6 +100,7 @@ function CheckoutReceipt(props) {
       <Modal.Actions>
         <Link to="/">
           <Button
+            secondary
             onClick={() => {
               setOpen(false);
               props.purchaseComplete();
