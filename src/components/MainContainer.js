@@ -40,7 +40,6 @@ class MainContainer extends React.Component {
       })
         .then((r) => r.json())
         .then((loggedInUser) => {
-          // console.log(loggedInUser);
           this.handleLogin(loggedInUser);
         });
     }

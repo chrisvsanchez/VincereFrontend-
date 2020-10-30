@@ -20,6 +20,7 @@ class Settings extends React.Component {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer ${localStorage.token}`,
         },
         body: JSON.stringify({ email: this.state.newEmail }),
       })
@@ -35,6 +36,7 @@ class Settings extends React.Component {
         });
     }
   };
+
   showForm = () => {
     return (
       <Segment inverted>
@@ -97,7 +99,7 @@ class Settings extends React.Component {
         <Header as="h2" textAlign="center">
           <Icon name="settings" />
           Welcome to Settings
-          {this.props.currentUserObj.name}
+          {this.props.currentUserObj ? this.props.currentUserObj.name : null}
         </Header>
         <Grid columns={2} divided padded>
           <Grid.Row color="white" textAlign="left">
@@ -111,9 +113,13 @@ class Settings extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <Segment color="black" inverted>
-                <h3>Name: {this.props.currentUserObj.name}</h3>
-                <h3>Email: {this.props.currentUserObj.email}</h3>
-                <h3>Address: {this.props.currentUserObj.address}</h3>
+                {this.props.currentUserObj ? (
+                  <>
+                    <h3>Name: {this.props.currentUserObj.name}</h3>
+                    <h3>Email: {this.props.currentUserObj.email}</h3>
+                    <h3>Address: {this.props.currentUserObj.address}</h3>){" "}
+                  </>
+                ) : null}
               </Segment>
             </Grid.Column>
           </Grid.Row>
