@@ -1,6 +1,8 @@
 import React from "react";
 import CheckoutItemCard from "./CheckoutItemCards";
 import { Link } from "react-router-dom";
+import ReactDom from "react-dom";
+import { loadStripe } from "@stripe/react-stripe-js";
 import {
   Form,
   Input,
@@ -14,6 +16,11 @@ import {
 } from "semantic-ui-react";
 import CheckoutTransaction from "./CheckoutTransaction";
 import CheckoutReceipt from "./CheckoutReceipt";
+import CheckoutForm from "./CheckoutForm";
+import StripeCheckout from "@stripe/react-stripe-js";
+// const stripePromise = loadStripe(
+//   "pk_test_51HiKydLw7wqshZ781YJj1GVb3dqO2ay1aSRiZS5eITvyT0KIcnNHaiYFpEJ5K7FgZR0BRhvlsiuM54160UgQTgfE00akhFG2cc"
+// );
 class CheckoutContainer extends React.Component {
   state = {
     firstName: "",
@@ -24,15 +31,16 @@ class CheckoutContainer extends React.Component {
     shippingEmail: "",
     zipCode: "",
     currentOrderID: 0,
-    orderObj: "",
+    orderObj: null,
     orderItemObj: null,
     addressForm: true,
     addressInput: false,
     paymentForm: true,
     paymentFormSubmitted: false,
-    editAdressFormClicked: false,
+    editAddressFormClicked: false,
     cardInfo: null,
   };
+
   turnToItemSection = () => {
     return this.props.cart.map((item) => (
       <CheckoutItemCard
@@ -429,6 +437,7 @@ class CheckoutContainer extends React.Component {
           </Header>
         ) : null}
         {this.turnToItemSection()}
+
         {this.state.addressInput ? this.renderOrderAddress() : null}
         {this.state.editAddressFormClicked ? this.editOrderAddressForm() : null}
         {this.state.addressForm && this.props.cart.length > 0
@@ -440,7 +449,14 @@ class CheckoutContainer extends React.Component {
             renderPaymentInfo={this.renderPaymentInfo}
           />
         ) : null}
+        {/* STRPE API COMPONENT */}
+        {/* <CheckoutForm orderId={this.state.orderObj.id} /> */}
         {this.state.paymentFormSubmitted ? this.renderPaymentInfo() : null}
+        {this.props.cart.length > 0 ? (
+          <Button primary role="link">
+            Checky outtie
+          </Button>
+        ) : null}
         {this.props.cart.length === 0 ? null : (
           <Segment inverted>
             <h2>Total:${this.props.cartTotal}</h2>

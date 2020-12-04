@@ -1,13 +1,12 @@
 import React from "react";
 import Home from "./Home";
-import About from "./About";
 import NavBar from "./NavBar";
-import Footer from "./Footer";
 import Settings from "./Settings/Settings";
 import ProductsPage from "./Products/ProductPage";
 import ItemShowPage from "./Products/ItemShowPage";
 import CheckoutContainer from "./Checkout/CheckoutContainer";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+
 import EventContainer from "./Event/EventContainer";
 import SignUp from "./SignUp";
 import Login from "./Login";
@@ -32,12 +31,8 @@ class MainContainer extends React.Component {
     });
   };
   componentDidMount() {
-    if (localStorage.token) {
-      fetch(`http://localhost:3000/autologin`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      })
+    if (localStorage.userId) {
+      fetch(`http://localhost:3000/autologin/${localStorage.userId}`)
         .then((r) => r.json())
         .then((loggedInUser) => {
           this.handleLogin(loggedInUser);
@@ -108,7 +103,7 @@ class MainContainer extends React.Component {
   };
   handleLogout = () => {
     // localStorage.clear();
-    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     this.setState(
       {
         currentUser: null,
@@ -131,7 +126,8 @@ class MainContainer extends React.Component {
           </Route>
           <Route path="/shop">
             <ProductsPage
-              products={this.filterSearch()}
+              products={this.filterSearch}
+              // products={this.filterSearch()}
               handleSearch={this.handleInput}
               addToCard={this.addToCard}
               searchState={this.state.search}

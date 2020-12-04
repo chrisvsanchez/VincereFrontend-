@@ -20,10 +20,11 @@ class Login extends React.Component {
     })
       .then((r) => r.json())
       .then((data) => {
+        console.log(data, "yo");
         // console.log(data);
-        const { user, token } = data;
-        this.props.handleLogin(user);
-        localStorage.token = token;
+        // const { user, token } = data;
+        this.props.handleLogin(data);
+        localStorage.userId = data.id;
       });
   };
   render() {
