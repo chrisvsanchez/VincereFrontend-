@@ -31,8 +31,12 @@ class MainContainer extends React.Component {
     });
   };
   componentDidMount() {
-    if (localStorage.userId) {
-      fetch(`http://localhost:3000/autologin/${localStorage.userId}`)
+    if (localStorage.token) {
+      fetch(`http://localhost:3000/autologin`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
         .then((r) => r.json())
         .then((loggedInUser) => {
           this.handleLogin(loggedInUser);
