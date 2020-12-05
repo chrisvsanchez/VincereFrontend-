@@ -5,7 +5,7 @@ import Settings from "./Settings/Settings";
 import ProductsPage from "./Products/ProductPage";
 import ItemShowPage from "./Products/ItemShowPage";
 import CheckoutContainer from "./Checkout/CheckoutContainer";
-import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 
 import EventContainer from "./Event/EventContainer";
 import SignUp from "./SignUp";
@@ -31,6 +31,14 @@ class MainContainer extends React.Component {
     });
   };
   componentDidMount() {
+    fetch("http://localhost:3000/items")
+      .then((r) => r.json())
+      .then((allItems) => {
+        console.log("Main containery", allItems);
+        this.setState({
+          products: allItems,
+        });
+      });
     if (localStorage.token) {
       fetch(`http://localhost:3000/autologin`, {
         headers: {
@@ -42,14 +50,6 @@ class MainContainer extends React.Component {
           this.handleLogin(loggedInUser);
         });
     }
-    fetch("http://localhost:3000/items")
-      .then((r) => r.json())
-      .then((allItems) => {
-        // console.log("Main container", allItems);
-        this.setState({
-          products: allItems,
-        });
-      });
   }
   handleInput = (e) => {
     const userSearchInput = e.target.value;
@@ -130,8 +130,8 @@ class MainContainer extends React.Component {
           </Route>
           <Route path="/shop">
             <ProductsPage
-              products={this.filterSearch}
-              // products={this.filterSearch()}
+              // products={this.filterSearch}
+              products={this.filterSearch()}
               handleSearch={this.handleInput}
               addToCard={this.addToCard}
               searchState={this.state.search}

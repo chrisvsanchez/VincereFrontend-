@@ -10,12 +10,14 @@ class ProductPage extends React.Component {
         key={item.id}
         item={item}
         addToCard={this.addToCard}
-
         // cartTotal={this.props.cartTotal}
       />
     ));
   };
   render() {
+    {
+      console.log(this.props.products, "Products Page");
+    }
     return (
       <>
         <div>
@@ -23,14 +25,13 @@ class ProductPage extends React.Component {
             CYCLING APPAREL
           </Header>
           <Header textAlign="center" as="p">
-            {" "}
             Swap the tarmac for the trails with our range of technical adventure
             apparel and highly durable essentials designed for off-road riding.
           </Header>
         </div>
         <ItemContainer
           handleSearch={this.props.handleSearch}
-          turnToCard={this.turnToCard}
+          turnToCard={this.turnToCard()}
           searchState={this.props.searchState}
           //   cartTotal={this.props.cartTotal}
         />
