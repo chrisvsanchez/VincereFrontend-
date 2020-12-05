@@ -21,9 +21,9 @@ class SignUp extends React.Component {
     })
       .then((r) => r.json())
       .then((data) => {
-        // const { user, token } = data;
-        this.props.handleLogin(data);
-        localStorage.userId = data.id;
+        const { user, token } = data;
+        this.props.handleLogin(user);
+        localStorage.token = token;
       });
   };
   render() {

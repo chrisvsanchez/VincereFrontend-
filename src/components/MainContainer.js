@@ -107,7 +107,7 @@ class MainContainer extends React.Component {
   };
   handleLogout = () => {
     // localStorage.clear();
-    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
     this.setState(
       {
         currentUser: null,
