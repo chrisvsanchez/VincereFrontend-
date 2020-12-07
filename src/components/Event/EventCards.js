@@ -1,20 +1,11 @@
 import React from "react";
-import {
-  Grid,
-  Header,
-  Segment,
-  Image,
-  Button,
-  Card,
-  Icon,
-} from "semantic-ui-react";
+import { Header, Image, Button, Card, Icon } from "semantic-ui-react";
 import Bear from "../Images/Bear mountain.png";
 import NorthCounty from "../Images/vancortland.png";
 import Century from "../Images/century of the year.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// import Map from "./Map";
 class EventCards extends React.Component {
   state = { events: [], createdSignUpObj: [], num: 1 };
   notify = () =>
@@ -49,7 +40,7 @@ class EventCards extends React.Component {
 
   registerUser = (eventID) => {
     let signUpObj = {
-      user_id: this.props.currentUser.id,
+      user_id: localStorage.token,
       event_id: eventID,
     };
     fetch("http://localhost:3000/sign_up_for_events/", {

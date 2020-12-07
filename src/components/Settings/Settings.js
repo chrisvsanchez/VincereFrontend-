@@ -128,7 +128,10 @@ class Settings extends React.Component {
         {this.state.email ? this.showForm() : null}
 
         {this.state.orderHistory ? (
-          <OrderSection currentUser={this.props.currentUser} />
+          <OrderSection
+            userOrders={this.props.userOrders}
+            // currentUser={this.props.currentUserObj}
+          />
         ) : null}
         <br></br>
         <br></br>

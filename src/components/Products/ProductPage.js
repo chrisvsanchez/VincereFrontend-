@@ -1,5 +1,5 @@
 import React from "react";
-// import { Card } from "semantic-ui-react";
+
 import ItemContainer from "./ItemContainer";
 import ItemCard from "./ItemCard";
 import { Header } from "semantic-ui-react";
@@ -15,9 +15,6 @@ class ProductPage extends React.Component {
     ));
   };
   render() {
-    {
-      console.log(this.props.products, "Products Page");
-    }
     return (
       <>
         <div>

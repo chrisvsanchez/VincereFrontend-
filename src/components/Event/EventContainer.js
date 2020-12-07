@@ -2,8 +2,6 @@ import React from "react";
 import Map from "./Maps";
 import EventCards from "./EventCards";
 import { Header } from "semantic-ui-react";
-import Typical from "react-typical";
-import itemCard from "../Products/ItemCard";
 
 class EventContainer extends React.Component {
   render() {

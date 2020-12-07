@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, Image, Icon } from "semantic-ui-react";
-import Typical from "react-typical";
+import { Image } from "semantic-ui-react";
+
 import clip from "./video/Background.mp4";
-import wheel from "./Images/vincerenycyclingwheel_white.png";
+
 import mainlogo from "./Images/mainlogo.png";
 import logo from "./Images/VNYCC_white.png";
 function Home() {

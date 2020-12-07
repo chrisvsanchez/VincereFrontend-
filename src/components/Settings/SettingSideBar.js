@@ -1,14 +1,6 @@
 import React from "react";
 
-import {
-  Dropdown,
-  Menu,
-  Segment,
-  Image,
-  Form,
-  Grid,
-  Button,
-} from "semantic-ui-react";
+import { Dropdown, Menu } from "semantic-ui-react";
 class SettingSideBar extends React.Component {
   state = { activeItem: "account", email: false, password: false };
 

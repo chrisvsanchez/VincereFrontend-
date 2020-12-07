@@ -6,7 +6,6 @@ import ProductsPage from "./Products/ProductPage";
 import ItemShowPage from "./Products/ItemShowPage";
 import CheckoutContainer from "./Checkout/CheckoutContainer";
 import { Switch, Route, withRouter } from "react-router-dom";
-
 import EventContainer from "./Event/EventContainer";
 import SignUp from "./SignUp";
 import Login from "./Login";
@@ -19,11 +18,20 @@ class MainContainer extends React.Component {
     cartTotal: 0,
     currentUser: null,
     itemQuantity: 1,
+    userOrders: null,
+  };
+  handleOrder = (orderObj) => {
+    console.log("handleOrder", orderObj);
+    // let newOrderArr = [...this.state.userOrders, orderObj];
+    // this.setState({ userOrders: newOrderArr });
   };
   handleLogin = (currentUser) => {
-    this.setState({ currentUser }, () => {
-      this.props.history.push("/");
-    });
+    this.setState(
+      { currentUser: currentUser, userOrders: currentUser.orders },
+      () => {
+        this.props.history.push("/");
+      }
+    );
   };
   purchaseComplete = () => {
     this.setState({
@@ -64,7 +72,6 @@ class MainContainer extends React.Component {
     );
   };
   componentDidUpdate(prevProps, prevState) {
-    // cartTotal = () => {
     if (
       prevState.cart !== this.state.cart ||
       prevState.itemQuantity !== this.state.itemQuantity
@@ -77,10 +84,7 @@ class MainContainer extends React.Component {
         cartTotal: total,
         // itemQuantity: 0,
       });
-      console.log("prevState", prevState);
-      console.log("State", this.state);
     }
-    // };
   }
   updateCurrentUserObj = (updatedCurrentUser) => {
     this.setState({
@@ -144,9 +148,10 @@ class MainContainer extends React.Component {
           <Route path="/settings">
             {this.currentUser !== null ? (
               <Settings
+                userOrders={this.state.userOrders}
                 currentUserObj={this.state.currentUser}
                 updateCurrentUserObj={this.updateCurrentUserObj}
-                currentUser={this.state.currentUser}
+                // currentUser={this.state.currentUser}
               />
             ) : null}
           </Route>
@@ -158,6 +163,7 @@ class MainContainer extends React.Component {
               currentUser={this.state.currentUser}
               updateCartQuantity={this.updateCartQuantity}
               purchaseComplete={this.purchaseComplete}
+              handleOrder={this.handleOrder}
             />
           </Route>
           <Route
@@ -173,7 +179,6 @@ class MainContainer extends React.Component {
             <Login handleLogin={this.handleLogin} />
           </Route>
         </Switch>
-        {/* <Footer /> */}
       </>
     );
   }

@@ -1,8 +1,6 @@
 import React from "react";
 import CheckoutItemCard from "./CheckoutItemCards";
 import { Link } from "react-router-dom";
-import ReactDom from "react-dom";
-import { loadStripe } from "@stripe/react-stripe-js";
 import {
   Form,
   Input,
@@ -10,17 +8,11 @@ import {
   Segment,
   Header,
   Grid,
-  Icon,
   Image,
-  GridColumn,
 } from "semantic-ui-react";
 import CheckoutTransaction from "./CheckoutTransaction";
 import CheckoutReceipt from "./CheckoutReceipt";
-import CheckoutForm from "./CheckoutForm";
-import StripeCheckout from "@stripe/react-stripe-js";
-// const stripePromise = loadStripe(
-//   "pk_test_51HiKydLw7wqshZ781YJj1GVb3dqO2ay1aSRiZS5eITvyT0KIcnNHaiYFpEJ5K7FgZR0BRhvlsiuM54160UgQTgfE00akhFG2cc"
-// );
+
 class CheckoutContainer extends React.Component {
   state = {
     firstName: "",
@@ -167,7 +159,7 @@ class CheckoutContainer extends React.Component {
     let cartIDs = this.props.cart.map((item) => item.id);
     let orderInfo = {
       address: this.state.shipAddress + " " + this.state.zipCode,
-      user_id: this.props.currentUser.id,
+      user_id: localStorage.token,
       subtotal: this.props.cartTotal,
       total: this.props.cartTotal + tax,
       tax: this.props.cartTotal * 0.08875,
@@ -182,43 +174,16 @@ class CheckoutContainer extends React.Component {
       body: JSON.stringify(orderInfo),
     })
       .then((r) => r.json())
-      .then(
-        (orderObj) => {
-          console.log(orderObj.id);
-          this.setState({
-            currentOrderID: orderObj.id,
-            orderObj: orderObj,
-            addressForm: false,
-          });
-        }
-        // , this.createOrderItem()
-      );
+      .then((orderObj) => {
+        console.log(orderObj.id, "CheckoutContainer");
+        this.setState({
+          currentOrderID: orderObj.id,
+          orderObj: orderObj,
+          addressForm: false,
+        });
+      });
   };
 
-  // shouldComponentUpdate(prevProps, prevState) {
-  //   if (prevProps.currentOrderID !== this.state.currentOrderID) {
-  //     this.props.cart.forEach((item) => {
-  //       fetch(`http://localhost:3000/order_items`, {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           order_id: this.state.orderObj.id,
-  //           item_id: item.id,
-  //         }),
-  //       })
-  //         .then((r) => r.json())
-  //         .then((neworderitemObj) => {
-  //           this.setState({
-  //             orderitemObj: neworderitemObj,
-  //             addressForm: false,
-  //             addressInput: !this.state.addressInput,
-  //           });
-  //         });
-  //     });
-  //   }
-  // }
   createOrderItem = () => {
     let orderNumber = this.state.orderObj.id;
     this.props.cart.forEach((item) => {
@@ -244,6 +209,7 @@ class CheckoutContainer extends React.Component {
         });
     });
   };
+
   renderOrderAddress = () => {
     return (
       <Segment>
@@ -271,7 +237,7 @@ class CheckoutContainer extends React.Component {
 
   toggleEditAddressForm = () => {
     this.setState({
-      editAdressFormClicked: !this.state.editAdressFormClicked,
+      editAddressFormClicked: !this.state.editAddressFormClicked,
     });
   };
   editOrderAddressForm = () => {
@@ -473,23 +439,6 @@ class CheckoutContainer extends React.Component {
               turnToRow={this.turnToRow}
               purchaseComplete={this.props.purchaseComplete}
             ></CheckoutReceipt>
-            {/* <Button
-              onClick={"hi"}
-              inverted
-              size="large"
-              color="green"
-              disabled={
-                !this.state.firstName ||
-                !this.state.lastName ||
-                !this.state.shipAddress ||
-                !this.state.zipCode ||
-                !this.state.phoneNumber ||
-                !this.state.shippingEmail ||
-                !this.state.cardInfo
-              }
-            >
-              CHECK OUT
-            </Button> */}
           </Segment>
         )}
         <br></br>
